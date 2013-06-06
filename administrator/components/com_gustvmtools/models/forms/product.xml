@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="JGLOBAL_FIELD_ID_LABEL" readonly="true"  />
+		<field name="model" type="text" label="model" />
+		<field name="proiz" type="text" label="proiz" />
+		<field name="img" type="text" label="img" />
+		<field name="properties_title" type="textarea" label="properties_title" rows="10" cols="5"/>
+		<field name="properties_value" type="textarea" label="properties_value" rows="10" cols="5"/>
+		<field name="price" type="text" label="price" />
+		<field name="link_to_product" type="text" label="link_to_product" />
+		<field name="desc" type="textarea" label="desc" rows="10" cols="5"/>
+	</fieldset>
+</form>

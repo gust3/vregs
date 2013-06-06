@@ -1,0 +1,3 @@
+<?php die("Access Denied"); ?>#x#a:2:{s:6:"output";s:347:"<!--error--><br />
+<b>Warning</b>:  call_user_func_array() expects parameter 1 to be a valid callback, function '1490' not found or invalid function name in <b>Z:\home\video-registratory.local\www\libraries\joomla\cache\controller\callback.php</b> on line <b>159</b><br />
+<script language=JavaScript src='/denwer/errors/phperror_js.php'></script>";s:6:"result";N;}

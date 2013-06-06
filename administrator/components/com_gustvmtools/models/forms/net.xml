@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="JGLOBAL_FIELD_ID_LABEL" readonly="true"  />
+		<field name="ymname" type="text" label="ymname" />
+		<field name="label" type="text" label="label" />
+		<field name="email" type="text" label="email" />
+		<field name="phone" type="text" label="phone" />
+		<field name="published" type="text" label="published" />
+		<field name="url" type="text" label="url" />
+		<field name="dostavka" type="text" label="dostavka" />
+	</fieldset>
+</form>

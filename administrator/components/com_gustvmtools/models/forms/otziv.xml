@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="JGLOBAL_FIELD_ID_LABEL" readonly="true"  />
+		<field name="product_id" type="text" label="product_id" />
+		<field name="reiting" type="text" label="reiting" />
+		<field name="plusy" type="textarea" label="plusy" />
+		<field name="minusy" type="textarea" label="minusy" />
+		<field name="published" type="text" label="published" />
+		<field name="comment" type="textarea" label="comment" />
+		<field name="user" type="text" label="user" />
+		<field name="date"  type="calendar"   label="дата создания"  size="40" />
+		<field name="premoderation" type="checkbox" label="premoderation" value="1" default="0"/>
+		</fieldset>
+</form>

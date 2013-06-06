@@ -1,0 +1,28 @@
+<?php
+// Запрет прямого доступа.
+defined('_JEXEC') or die;
+foreach ($this->items as $i => $item): 
+?>
+   <tr class="row<?php echo $i % 2; ?>">       
+        <td>
+            <?php echo JHtml::_('grid.id', $i, $item->id); ?>
+        </td>
+		<td>
+            <a href="<?php echo JRoute::_('index.php?option=com_gustvmtools&task=save&view=netproduct&id='.$item->id); ?>"><?php echo $item->id; ?></a>
+        </td>
+        <td>
+            <a href="<?php echo JRoute::_('index.php?option=com_gustvmtools&task=save&view=netproduct&id='.$item->id); ?>"><?php echo $item->id_net; ?></a>
+			<a href="<?php echo JRoute::_('index.php?option=com_gustvmtools&task=save&view=net&id='.$item->id_net); ?>">[сеть магазинов]</a>
+        </td>
+		<td>
+            <a href="<?php echo JRoute::_('index.php?option=com_gustvmtools&task=save&view=netproduct&id='.$item->id); ?>"><?php echo $item->price; ?></a>
+        </td>
+		<td>
+            <a href="<?php echo JRoute::_('index.php?option=com_gustvmtools&task=save&view=netproduct&id='.$item->id); ?>"><?php echo $item->id_product; ?></a>
+			<a href="<?php echo JRoute::_('index.php?option=com_gustvmtools&task=save&view=product&id='.$item->id_product); ?>">[продукт]</a>
+        </td>
+		<td align="center">
+           <?php echo JHtml::_('jgrid.published', $item->published, $i, '', true, 'cb', null, null); ?>
+        </td>
+    </tr>
+<?php endforeach; ?>

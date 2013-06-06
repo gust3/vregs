@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+	<name>Слайдер</name>
+	<!-- The following elements are optional and free of formatting conttraints -->
+	<creationDate>Сентябрь 2012</creationDate>
+	<author>gust</author>
+	<authorEmail>gust3@mail.ru</authorEmail>
+	<authorUrl>http://cwteam.ri</authorUrl>
+	<copyright>All rights reserved</copyright>
+	<license>GNU/GPL</license>
+	<version>1.0.0</version>
+	<description>Слайдер</description>
+	<files>
+		<filename module="mod_feedback_form">mod_gust_slider.php</filename>
+	</files>
+	<config>
+	<fields name="params">
+		<fieldset name="опции" label="опции">
+		<field
+		name="id_category"
+		type="text"
+		label="id категории"
+		description="id категории" />
+		<field
+		name="time"
+		type="text"
+		label="смена кадра"
+		default="4000"
+		description="введите время в мс" />
+		<field
+		name="autoslide"
+		type="radio"
+		label="авто смена"
+		default="0"
+		description="введите время в мс">
+		<option value="0">да</option>
+		<option value="1">нет</option>		
+		</field>
+		<field
+		name="slidefrom"
+		type="radio"
+		label="источник слайда"
+		default="0"
+		description="использовать virtuemart или материал">
+		<option value="0">virtuemart</option>
+		<option value="1">материал</option>		
+		</field>
+	</fieldset>
+	</fields>
+	</config>
+</install>

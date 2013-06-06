@@ -1,0 +1,1 @@
+#gusts_menu .item-101.current::before { background: url("http://video-registratory.com/templates/skylab/images/gusts/hover_menu2.jpg") transparent;content: "";height: 36px;left: -5px;position: absolute;top: 0px;width: 4px;z-index:100;}#gusts_menu ul {z-index:-1;position:relative;}#gusts_menu li.current {height:40px;}

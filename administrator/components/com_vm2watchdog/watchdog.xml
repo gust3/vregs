@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5" method="upgrade">
+        <name>com_vm2watchdog</name>
+        <author>Linelab.org</author>
+        <creationDate>April 2012</creationDate>
+        <copyright>(C) 2012 Linelab.org. All rights reserved.</copyright>
+        <license>Commercial licence</license>
+        <authorEmail>linelab@linelab.org</authorEmail>
+        <authorUrl>www.linelab.org</authorUrl>
+        <version>1.0</version>
+        <description>COM_VM2WATCHDOG_XML_DESCRIPTION</description>
+        <install>
+        <sql>
+           <file driver="mysql" charset="utf8">install.mysql.utf8.sql</file>
+        </sql>
+    	</install>
+        <administration>
+                <files folder="admin">
+                        <filename>install.mysql.utf8.sql</filename>
+                        <filename>vm2watchdog.php</filename>
+                        <folder>tables</folder>                    
+                </files>
+        </administration>
+        <files folder="site">
+        	<filename>controller.php</filename>
+        	<filename>vm2watchdog.php</filename>
+        	<filename>router.php</filename>
+        	<folder>controllers</folder>
+        	<folder>models</folder>
+        	<folder>views</folder>
+        </files>
+        <languages folder="site/languages">
+        	<language tag="en-GB">en-GB.com_vm2watchdog.ini</language>
+        	<language tag="cs-CZ">cs-CZ.com_vm2watchdog.ini</language>
+        </languages>
+</extension>

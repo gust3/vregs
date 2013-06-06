@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="JGLOBAL_FIELD_ID_LABEL" readonly="true"  />
+		<field name="id_net" type="text" label="id_net" />
+		<field name="price" type="text" label="price" />
+		<field name="id_product" type="text" label="id_product" />
+		<field name="published" type="text" label="published" />
+	</fieldset>
+</form>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5.0" method="upgrade">
+ 
+    <name>gustVMtools</name>
+    <!-- Следующие элементы необязательны -->
+    <creationDate>3/12/12</creationDate>
+    <author>Gust</author>
+    <authorEmail>gust3@mail.ru</authorEmail>
+    <authorUrl>www.cwteam.ru/gust/</authorUrl>
+    <!--  Версия записывается в таблицу компонентов -->
+    <version>0.0.1</version>
+    <!-- Описание необязательно -->
+    <description>gustVMtools</description>
+ 
+    <!-- Запускается при установке -->
+    <install>
+    </install>
+    <!-- Запускается при удалении -->
+    <uninstall>
+    </uninstall>
+    <!-- Запускается при обновлении -->
+    <update>
+    </update>
+ 
+    <!-- Раздел основных файлов сайта -->
+    <!-- Обратите внимание на значение аттрибута folder: Этот аттрибут описывает папку нашего пакета-установщика из которой должны копироваться файлы. 
+    Поэтому указанные в этом разделе файлы будут скопированы из папки /site/ нашего пакета-установщика в соответствующую папку установки. -->
+    <!-- Администрирование -->
+    <administration>
+        <!-- Раздел Меню -->
+        <menu>gustVMtools</menu>
+        <!-- Раздел основных файлов администрирования  -->
+        <!-- Обратите внимание на значение аттрибута folder: Этот аттрибут описывает папку нашего пакета-установщика из которой должны копироваться файлы. 
+        Поэтому указанные в этом разделе файлы будут скопированы из папки /admin/ нашего пакета-установщика в соответствующую папку установки. -->
+        <files folder="admin">
+            <filename>index.html</filename>
+            <filename>controller.php</filename>
+            <filename>gustVMtools.php</filename>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+        </files>
+    </administration>
+ 
+</extension>

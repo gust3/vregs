@@ -1,0 +1,10 @@
+<form>
+	<fieldset>
+		<field type="text" name="email" id="email" label="COM_VM2WATCHDOG_EMAIL" required="true" validate="email" />
+		<field type="text" name="price" id="price" label="COM_VM2WATCHDOG_PRICE" required="true" />
+		<field type="hidden" name="virtuemart_product_id" id="virtuemart_product_id" />
+	</fieldset>
+	<fieldset name="captcha_fld">
+		<field name="captcha" type="captcha" label="COM_VM2WATCHDOG_CAPTCHA" validate="captcha" namespace="watchdog" />
+	</fieldset>
+</form> 

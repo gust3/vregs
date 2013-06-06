@@ -1,0 +1,26 @@
+#adminVMtools #gustVMtools td
+{
+padding:5px;
+border:1px solid grey;
+border-collapse:collapse;
+}
+#adminVMtools table#gustVMtools
+{
+border:none;
+}
+.buttons_gustvmtools
+{
+border:1px solid grey;
+padding:5px;
+margin-bottom:5px;
+}
+.buttons_gustvmtools a
+{
+margin-left:10px;
+color:red;
+}
+#gustVMtools_mag td, #gustVMtools_mag th
+{
+border:1px solid grey;
+padding:5px;
+}

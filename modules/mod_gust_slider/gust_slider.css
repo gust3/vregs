@@ -1,0 +1,8 @@
+.container_slider{height:200px;border: 1px solid #C6C3C3; margin-top:6px; margin-bottom:5px;background-color:white;position:relative;}
+.slide_gust img{position:absolute; left:30px; top:15px;}
+.title_product{font-size:18px;position:absolute;left:240px;top:25px;color:#356e8e}
+.product_props{font-size:12px;position:absolute;left:240px;top:50px;width:340px;}
+.new_lenta{background-image:url(images/new.png);position:absolute;right:-1px;bottom:-1px;width:139px;height:139px;}
+.price_container_product{font-size:18px;position:absolute;left:620px;top:45px;color:#a1a1a1}
+.price_container_product .product_price{font-size:20px;color:#356e8e}
+.slide_gust .button{text-align:center;position:absolute;left:700px;top:75px;}

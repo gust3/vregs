@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+	<name>Сравнение</name>
+	<!-- The following elements are optional and free of formatting conttraints -->
+	<creationDate>январь 2012</creationDate>
+	<author>gust</author>
+	<authorEmail>gust3@mail.ru</authorEmail>
+	<authorUrl>http://cwteam.ru</authorUrl>
+	<copyright>All rights reserved</copyright>
+	<license>GNU/GPL</license>
+	<version>1.0.0</version>
+	<description>модуль сравнения</description>
+	<files>
+		<filename module="mod_feedback_form">mod_sravnenie.php</filename>
+	</files>
+	<config>
+	<fields name="params">
+	</fields>
+	</config>
+</install>

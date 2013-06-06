@@ -1,0 +1,297 @@
+#glass ul.level0 {
+position: absolute;
+z-index: 1500;
+border:0 none;
+padding:10px;
+}
+#glass ul {  
+background: #1c1c1c;
+font-size: 12px;
+left: -10000px;
+top: 42px !important; 
+} 
+#glass li {  
+position: static !important;
+}
+#glass span.vmdesc {
+width:120px;
+font-size:10px;
+color:#dedede;
+}
+#glass > li:hover > ul {
+left: 0;
+}
+#glass li.level1{ 
+text-align:left;
+width:120px; 
+padding: 0 10px 10px !important;
+border-right: 1px solid #333;
+min-height: 210px;
+}
+#glass li.level2 {
+float: none !important;
+height:20px !important;
+line-height:20px !important;
+}
+#glass ul.chield > li {
+float: left;  
+list-style: none;
+}
+#glass .chield {
+width: 940px;
+margin: 0;
+position: static;
+border-radius: 0 0 5px 5px;
+}
+#glass ul li {
+float: none;
+margin: 0;
+padding: 0;
+background:none !important;
+}
+#glass ul li.active a, #glass ul li:hover a{
+background: none;
+}
+#glass > li > ul > li > a, #glass > li > ul > li > a:hover  {background: none !important; font-size:100%;}
+#glass > li > ul > li.parent > a span {
+font-size: 12px;
+padding: 0 0 5px;
+text-transform: uppercase;
+}
+#glass ul li a {
+font-weight: normal;
+background: none !important; 
+padding:0 !important;
+text-align:left;  
+}
+#glass li:hover #glass ul {
+left: 120px;
+}
+#glass > li > ul > li, #glass > li > ul > li > ul > li,  #glass > li > ul > li > ul > li > ul > li, #glass > li > ul > li > ul > li > ul > li > ul > li {
+margin: 0;
+width: 120px;
+}
+#glass ul ul{
+background: none !important;
+font-size: 13px;
+text-align: left;
+width: 120px !important;
+border: 0 none !important;
+}
+#glass ul ul li a, #glass ul ul li a:hover {
+padding: 2px 0 !important;
+height:20px !important;
+line-height:20px !important;
+background: none !important;
+}
+#glass li li a, #glass li li a:hover {
+height:20px !important;
+line-height:20px !important;
+border: 0 none !important;
+background: none !important;
+}  
+
+#glass ul ul li a  {
+text-shadow: 1px 1px 1px #000;
+}
+
+#linelab ul.level0 {
+position: absolute;
+z-index: 1500;
+border:0 none;
+padding:10px;
+box-shadow: 0 11px 20px rgba(0, 0, 0, 0.3);
+-webkit-box-shadow: 0 11px 20px rgba(0, 0, 0, 0.3);
+}
+#linelab ul {  
+background: url("/virtuemart-templates/templates/skylab/images/bgbot.png") repeat-x scroll left bottom #FEFEFE;
+font-size: 12px;
+left: -10000px;
+top: 43px !important; 
+} 
+#linelab li {  
+position: static !important;
+}
+#linelab span.vmdesc {
+width:110px;
+font-size:10px;
+text-shadow: 1px 1px 1px #fff;
+color:#000;
+}
+#linelab > li:hover > ul {
+left: 0;
+}
+#linelab li.level1{ 
+text-align:left;
+width:110px; 
+padding: 0 10px 10px !important;
+border-right: 1px dotted #777;
+}
+#linelab li.level2 {
+float: none !important;
+height:20px !important;
+line-height:20px !important;
+}
+#linelab ul.chield > li {
+float: left;  
+list-style: none;
+}
+#linelab .chield {
+width: 938px;
+margin: 0;
+position: static;
+border-radius: 0 0 5px 5px;
+}
+#linelab ul li {
+float: none;
+margin: 0;
+padding: 0;
+background:none !important;
+}
+#linelab ul li.active a, #linelab ul li:hover a{
+background: none;
+}
+#linelab > li > ul > li > a, #linelab > li > ul > li > a:hover  {background: none !important; font-size:100%;}
+#linelab > li > ul > li.parent > a span {
+font-size: 12px;
+padding: 0 0 5px;
+text-transform: uppercase;
+}
+#linelab ul li a {
+font-weight: normal;
+background: none !important; 
+padding:0 !important;
+text-align:left;  
+}
+#linelab li:hover #linelab ul {
+left: 120px;
+}
+#linelab > li > ul > li, #linelab > li > ul > li > ul > li,  #linelab > li > ul > li > ul > li > ul > li, #linelab > li > ul > li > ul > li > ul > li > ul > li {
+margin: 0;
+width: 120px;
+}
+#linelab ul ul{
+background: none !important;
+font-size: 13px;
+text-align: left;
+width: 120px !important;
+border: 0 none !important;
+}
+#linelab ul ul li a, #linelab ul ul li a:hover {
+padding: 2px 0 !important;
+height:20px !important;
+line-height:20px !important;
+background: none !important;
+}
+#linelab li li a, #linelab li li a:hover {
+height:20px !important;
+line-height:20px !important;
+border: 0 none !important;
+background: none !important;
+color: #DAA520 !important;
+}  
+
+#linelab ul ul li a  {
+text-shadow: 1px 1px 1px #fff;
+}
+
+#shoplab ul.level0 {
+position: absolute;
+z-index: 1500;
+border:0 none;
+padding:10px;
+box-shadow: 0 11px 20px rgba(0, 0, 0, 0.3);
+-webkit-box-shadow: 0 11px 20px rgba(0, 0, 0, 0.3);
+}
+#shoplab ul {  
+background: #739a3f;
+font-size: 11px;
+left: -10000px;
+top: 37px !important; 
+} 
+#shoplab li {  
+position: static !important;
+}
+#shoplab span.vmdesc {
+width:120px;
+font-size:10px;
+color:#fff;
+}
+#shoplab > li:hover > ul {
+left: 0;
+}
+#shoplab li li a:hover {
+text-decoration: underline !important;
+}
+#shoplab li.level1{ 
+text-align:left;
+width:120px; 
+padding: 0 10px 10px !important;
+border-right: 1px dotted #E0F0C6!important;
+}
+#shoplab li.level2 {
+float: none !important;
+height:20px !important;
+line-height:20px !important;
+}
+#shoplab ul.chield > li {
+float: left;  
+list-style: none;
+}
+#shoplab .chield {
+width: 940px;
+margin: 0;
+position: static;
+border-radius: 0 0 5px 5px;
+}
+#shoplab ul li {
+float: none;
+margin: 0;
+padding: 0;
+background:none !important;
+}
+#shoplab ul li.active a, #shoplab ul li:hover a{
+background: none;
+}
+#shoplab > li > ul > li > a, #shoplab > li > ul > li > a:hover  {background: none !important; font-size:110%;}
+#shoplab > li > ul > li.parent > a span {
+font-size: 12px;
+padding: 0 0 5px;
+text-transform: uppercase;
+}
+#shoplab ul li a {
+font-weight: normal;
+background: none !important; 
+padding:0 !important;
+text-align:left;  
+}
+#shoplab li:hover #shoplab ul {
+left: 120px;
+}
+#shoplab > li > ul > li, #shoplab > li > ul > li > ul > li,  #shoplab > li > ul > li > ul > li > ul > li, #shoplab > li > ul > li > ul > li > ul > li > ul > li {
+margin: 0;
+width: 120px;
+}
+#shoplab ul ul{
+background: none !important;
+font-size: 10px;
+text-align: left;
+width: 120px !important;
+border: 0 none !important;
+}
+#shoplab ul ul li a, #shoplab ul ul li a:hover {
+padding: 2px 0 !important;
+height:20px !important;
+line-height:20px !important;
+background: none !important;
+}
+#shoplab li li a, #shoplab li li a:hover {
+height:20px !important;
+line-height:20px !important;
+border: 0 none !important;
+background: none !important;
+}  
+
+#shoplab li.active li.active {
+background:#5c8514 !important;
+}

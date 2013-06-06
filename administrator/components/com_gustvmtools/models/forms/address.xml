@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="text" default="0" label="JGLOBAL_FIELD_ID_LABEL" readonly="true"  />
+		<field name="id_net" type="text" label="id_net" />
+		<field name="id_region" type="text" label="id_region" />
+		<field name="adress" type="text" label="adress" />
+		<field name="clocks" type="clocks" label="phone" />
+		<field name="published" type="text" label="published" />
+		<field name="x" type="text" label="x" />
+		<field name="y" type="text" label="y" />
+		<field name="url" type="text" label="url" />
+		<field name="vidacha_zakazov" type="text" label="vidaca_zakazov" />
+		<field name="dostavka" type="text" label="dostavka" />
+		<field name="oplata" type="text" label="oplata" />
+		<field name="label" type="text" label="label" />
+		<field name="email" type="text" label="email" />
+		<field name="phones" type="text" label="phones" />
+	</fieldset>
+</form>

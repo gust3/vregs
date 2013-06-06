@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system">
+        <name>plg_system_vm2watchdog</name>
+       	<author>Linelab.org</author>
+        <creationDate>April 2012</creationDate>
+        <copyright>(C) 2012 Linelab.org. All rights reserved.</copyright>
+        <license>Commercial Licence</license>
+        <authorEmail>linelab@linelab.org</authorEmail>
+        <authorUrl>www.linelab.org</authorUrl>
+        <version>1.0</version>
+        <description>PLG_VM2WATCHDOG_XML_DESCRIPTION</description>
+        <files>
+                <filename plugin="vm2watchdog">vm2watchdog.php</filename>
+        </files>
+</extension>
