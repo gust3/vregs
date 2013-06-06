@@ -79,11 +79,11 @@ function pagination_list_footer($list)
 	{
 		$html .= "\n<div class=\"counter\">".$list['pagescounter']."</div>";
 		$html .= $list['pageslinks'];
-		$html .= "\n<div class=\"limit\">".JText::_('Display Num').$list['limitfield']."</div>";
+		$html .= "\n<div class=\"limit\">".JText::_('кол-во:').$list['limitfield']."</div>";
 	}
 	else
 	{
-		$html .= "\n<div class=\"limit\">".JText::_('Display Num').$list['limitfield']."</div>";
+		$html .= "\n<div class=\"limit\">".JText::_('кол-во:').$list['limitfield']."</div>";
 		$html .= $list['pageslinks'];
 		$html .= "\n<div class=\"counter\">".$list['pagescounter']."</div>";
 	}

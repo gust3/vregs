@@ -745,11 +745,11 @@ div.logo {width:230px; padding-left:20px; padding-top:5px; height:60px; float: l
 #ui-tabs ul#tabs li {width: 200px;}
 div.rating {font-size:90%;padding-left: 7px;font-style:italic;color:#666;}
 span.pricedtail {font-size:150% !important; padding-left:0 !important;}
-div.list-footer {width:420px;}
+div.list-footer {width:640px;}
 div.limit, div.counter, .list-footer div.pagination, div.orderByList, div.display-number, div.list-footer {float:left;display:block;}
 div.display-number {width:130px;}
 div.counter {display: none;}
-.list-footer div.pagination {width: 340px; padding-top: 12px;}
+.list-footer div.pagination {width: 490px; padding-top: 12px;}
 div.list-footer .pagination span, div.list-footer .pagination a {background: none repeat scroll 0 0 transparent;border: medium none; border-radius: 0 0 0 0;-webkit-border-radius: 0 0 0 0;color: #000000;font-weight: normal;margin: 0;padding: 3px;}
 .supertop{    float: right;
 height: 38px;
@@ -890,7 +890,7 @@ div.custom {padding:0 10px;}
 div.banneritem {text-align:center;padding-top:10px;}
 /* Page navigation*/
 div.component textarea{width:100%;}
-div.component input,div.component select,div.component textarea {background: -moz-linear-gradient(center top , #F1F1F1, #FFFFFF) repeat scroll 0 0 transparent;margin-bottom: 10px;padding: 3px;display: block;}
+div.component input,div.component select,div.component textarea {margin-bottom: 10px;padding: 3px;display: block;}
 input,select, textarea {background: -moz-linear-gradient(center top , #F1F1F1, #FFFFFF) repeat scroll 0 0 transparent;border: 1px solid #DCDCDC;margin-bottom: 10px;padding: 3px;display: block;}
 div.component div.search input,div.component div.search select {display: inline;}
 .component div.search {float:none;}
@@ -1232,7 +1232,7 @@ height:110px;
 display:block;
 text-align:center;
 }
-.last-view div, .new-view div
+    .last-view div, .new-view div
 {
 text-align:center;
 }
