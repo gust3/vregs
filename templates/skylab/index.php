@@ -6,6 +6,42 @@
  */
 defined('_JEXEC') or die;
 $config = & JFactory::getConfig();
+if (JRequest::getVar('type','normal')=='search-video')
+{
+
+
+sleep( 3 );
+// no term passed - just exit early with no response
+if (empty($_GET['term'])) exit ;
+$q = strtolower($_GET["term"]);
+// remove slashes if they were magically added
+if (get_magic_quotes_gpc()) $q = stripslashes($q);
+
+
+$db =& JFactory::getDBO();
+$query = "SELECT DISTINCT model FROM #__toolsvmproducts WHERE model like '%".$_GET['str']."%'";
+$db->setQuery($query);
+$models = $db->loadObjectList();
+
+foreach ($models as $model)
+{
+    $items[$model->model] = $model->model;
+}
+
+
+$result = array();
+foreach ($items as $key=>$value) {
+	if (strpos(strtolower($key), $q) !== false) {
+		array_push($result, array("id"=>$value, "label"=>$key, "value" => strip_tags($key)));
+	}
+	if (count($result) > 11)
+		break;
+}
+
+// json_encode is available in PHP 5.2 and above, or you can install a PECL module in earlier versions
+echo json_encode($result);
+    exit;
+}
 if (JRequest::getVar('type','normal')=='parser')
 {
 	require ("parser/parser.php");
@@ -75,6 +111,7 @@ if(JRequest::getVar('results')=='get_results') {
 	<?php
 	require(YOURBASEPATH . DS . "tools.php");
 	?>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"></script>
 	<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/skylab/js/cufon-yui.js"></script>
