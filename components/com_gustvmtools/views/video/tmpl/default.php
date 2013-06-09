@@ -48,10 +48,10 @@ $filter = JRequest::getVar('filter');
 <form action="<?php echo JRoute::_('index.php?option=com_gustvmtools&view=video'); ?>" method="post" name="adminForm">
 
 <div class="ui-widget">
-  <label for="filter">Модель: </label>
+  <label for="filter">Фильтровать по модели: </label>
   <input id="filter" size="50" name="filter" value="<?php echo $filter?>"/>
 </div>
-<input type="submit">
+<input type="submit" value="фильтровать">
     <?php echo $this->loadTemplate('head');?>
     <?php echo $this->loadTemplate('body');?>
     <?php echo $this->loadTemplate('foot');?>
