@@ -15,7 +15,7 @@ $productModel = VmModel::getModel('Product');
 				<div class="border_contacts <? echo $k & 1 ? 'odd' : 'noodd'?>" style="text-align:left;">
 					<a href="<?php echo $p->link?>" title="<?php echo $item->product_name?>"><b><?php echo $item->product_name?></b></a><br>
 					<p style="width:100%;"><?php echo $item->text?></p>
-					<a href="/opisanie/<?php echo $p_a[count($p_a) - 1];?>" style="float:right">обзор полностью</a>
+					<a href="/obzor/<?php echo $p_a[count($p_a) - 1];?>" style="float:right">обзор полностью</a>
 					<p style="clear:both"></p>
 				</div>
 		<?php } ?>
