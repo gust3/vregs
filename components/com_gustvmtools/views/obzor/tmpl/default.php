@@ -4,6 +4,7 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.formvalidation');
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 // Загружаем тултипы.
+$filter = JRequest::getVar('filter');
 ?>
   <script>
   jQuery(function($) {
