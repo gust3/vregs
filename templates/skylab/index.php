@@ -420,6 +420,10 @@ t='';}}x[l-a]=z;}document.write('<'+x[0]+' '+x[4]+'>.'+x[2]+'{'+x[1]+'}</'+x[0]+
 			<div class="pryam"></div>
 		</div>
 	</div>
+    <div class="bottom-menu">
+    <jdoc:include type="modules" name="bottom-menu" style="xhtml"/>
+    </div>
+    
 <script>
 	jQuery(function($){
 		$(".soc_seti").hover(function(){$(".soc_seti_div").show();},function(){$(".soc_seti_div").hide();});
@@ -478,6 +482,7 @@ t='';}}x[l-a]=z;}document.write('<'+x[0]+' '+x[4]+'>.'+x[2]+'{'+x[1]+'}</'+x[0]+
 			<jdoc:include type="modules" name="debug" style="none" />
 			</div>
 		</div>
+        
 	</div>
 	</div> 
 	   </body>
