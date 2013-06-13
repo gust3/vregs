@@ -3,10 +3,22 @@
 defined('_JEXEC') or die;
 ?>
 <div style="clear:both;">
-		<?php foreach ($this->items as $k => $item) {
+		<?php 
+        $i = 0;
+        foreach ($this->items as $k => $item) {
 		if (!$item->label) $item->label = $item->ymname;
-		?>
-				<div class="border_contacts <? echo $k & 1 ? 'odd' : 'noodd'?>" >
+		switch ($i)
+        {
+            case 0:$c = "odd";break;
+            case 1:$c = "noodd";break;
+            case 2:$c = "noodd";break;
+            case 3:$c = "odd";break;
+            case 4:$c = "odd";break;
+        }
+        $i++;
+        if ($i == 4) $i = 0;
+        ?>
+				<div class="border_contacts <? echo $c; ?>" >
 					<a href="<?php echo JRoute::_("index.php?view=contact&id=".$item->id."&layout=adresses");?>" title="<?php echo str_replace("'", "", $item->label)?>"><b><?php echo str_replace("'", "", $item->label)?></b></a><br>
 					<?php
 						$s='';
