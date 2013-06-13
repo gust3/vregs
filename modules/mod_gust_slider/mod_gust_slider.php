@@ -52,9 +52,39 @@ $yes[] = $data_row[$i]->product_new;
 			} 	
 		$got_product = $productModel->getProductSingle($products[$i]);
 		$productModel->addImages($got_product);
-		?>       
+		
+        
+        list($width, $height) = @getimagesize($got_product->images[0]->file_url);
+        
+        if ($height > 150)
+        {
+            $width_will = (int)($width*150)/$height;
+            if ($width_will > 190)
+            {
+                $height_will = (int)($height*190)/$width;
+                $width_will = 190;
+                $margin_top = 150 - $height_will;
+            }            
+        }
+        else
+        {
+            if ($width > 190)
+            {
+                $width_will = 190;
+                $height_will = (int)($height*190)/$width;
+                $margin_top = 150 - $height_will;
+            }
+            else
+            {
+                $width_will = $will;
+                $height_will = $height;
+                $margin_top = 150 - $height_will;
+            }
+        }     
+        
+        ?>       
 		<div num="<?php echo $i;?>" class="slide_gust" style="<?php echo $s ?>">
-			<a href="<?php echo $got_product->link?>"><img height="150" onload="info(this)" src="<?php echo $got_product->images[0]->file_url?>" alt="<?php echo $got_product->product_name?>" title="<?php echo $got_product->product_name?>"></a>
+			<a href="<?php echo $got_product->link?>"><img height="<?php echo $height_will;?>" width="<?php echo $width_will;?>"  src="<?php echo $got_product->images[0]->file_url?>" alt="<?php echo $got_product->product_name?>" style="margin-top:<?php echo $margin_top?>px;" title="<?php echo $got_product->product_name?>"></a>
 			<a href="<?php echo $got_product->link?>"><span class="title_product"><?php echo $got_product->product_name?></span></a>
 			<div class="product_props">
 			<?php $j=0;
@@ -74,14 +104,6 @@ $yes[] = $data_row[$i]->product_new;
 <div style="clear: both; height:0px;">&nbsp;</div>
 </div>
 <script>
-
-var info = function(img) {
-	if (img.width > img.height)
-	{
-		jQuery(img).css('height', 'auto');
-		jQuery(img).css('width', '130px');
-	}
-}
 
 jQuery(function(){
 posibble_to_rotate = 1;
