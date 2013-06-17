@@ -165,182 +165,170 @@ $i++;
 
     <div class="clear"></div>
 </div>
-
-<script type="text/javascript">
-jQuery(function($){	
+<?php
+$js = 'jQuery(function($){ ';
 //скрипты для карты
-arr = new Array();
-<?php
+$js .= 'arr = new Array(); ';
 $i=0;
-foreach ($this->nets as $item) 
-{
-?>
-	arr.push(new Array());
-<?php
-	$i++;
+foreach ($this->nets as $item){
+    $js .= 'arr.push(new Array()); ';
+    $i++;
 }
-?>
-	ymaps.ready(init);
-	function init(){     
-		realMap = new ymaps.Map ("real_map", {
-			center: [<?php echo $this->startpos->x?>, <?php echo $this->startpos->y?>],
-			zoom: 9
-		});
-		realMap.controls.add(
-		new ymaps.control.ZoomControl()
-		);
-		
-		<?php
-		$j = 0;
-		$i = 0;
-		foreach ($this->nets as $item) 
-		{
-		if (($item->adresses == 'same') || (!$item->adresses)) continue;
-		?>	
-		<?php foreach ($item->adresses as $adress)	
-				{?>	
-				var myGeocoder = ymaps.geocode("<?php echo $adress->adress;?>");				
-				myGeocoder.then(
-					function (res) {				
-						placemark = new ymaps.Placemark(res.geoObjects.get(0).geometry.getCoordinates(), {
-							content: '<?php echo $adress->adress;?>',
-							balloonContent: '<?php echo $adress->adress."<br>".$adress->clocks;?>'
-						});
-						
-						arr[<?php echo $i;?>].push(placemark);
-						
-						<?php
-						
-						if ($params[1] == $item->id_net){
-						?>
-						realMap.geoObjects.add(placemark);
-						<?php
-						if ($j == 0)
-						{
-							if ($params[0] <> -1) {
-						?>						
-						placemark.balloon.open();	
-						<?
-						}						
-						$j=1;
-						}
-						}
-						?>
-					},
-					function (err) {
-					}
-				);			
-		<?php	}
+$js .= 'ymaps.ready(init); ';
+$js .= 'function init(){ ';
+$js .= 'realMap = new ymaps.Map ("real_map", { ';
+$js .= 'center: ['.$this->startpos->x.', '.$this->startpos->y.'], ';
+$js .= 'zoom: 9 ';
+$js .= '}); ';
+$js .= 'realMap.controls.add( ';
+$js .= 'new ymaps.control.ZoomControl() ';
+$js .= ');';
+$j = 0;
+$i = 0;
+
+foreach ($this->nets as $item){
+if (($item->adresses == 'same') || (!$item->adresses)) continue;
+    foreach ($item->adresses as $adress) {	
+    $js .=  'var myGeocoder = ymaps.geocode("'.$adress->adress.'"); ';				
+    $js .= 'myGeocoder.then( ';
+    $js .= 'function (res) { ';
+    $js .= 'placemark = new ymaps.Placemark(res.geoObjects.get(0).geometry.getCoordinates(), { ';
+    $js .= "content: '".$adress->adress."', ";
+    $js .= "balloonContent: '".$adress->adress."<br>".$adress->clocks."' ";
+    $js .= "}); ";		
+    $js .= "arr[".$i."].push(placemark);";
+	if ($params[1] == $item->id_net){
+        $js .= "realMap.geoObjects.add(placemark);";
+			if ($j == 0){
+				if ($params[0] <> -1) {
+					$js .= 'placemark.balloon.open();';
+					}						
+					$j=1;
+			}
+	}
+    $js .= '}, ';
+	$js .= 'function (err) { ';
+	$js .= '} ';
+	$js .= '); ';
+	}
 		$i++;
-		}		
-		?>
+}
+	$js .= "} ";
+	
+    $js .= "$('.net_control').change(function(){ ";
+	$js .= 'if ($(".dostavka").attr("checked") == "checked") ';
+    $js .= '{ ';
+	$js .= 'document.cookie="product<?php echo $this->product->virtuemart_product_id?>=-1:" + $(this).val() + "; path=/"; ';
+	$js .= '} ';
+   
+	$js .= "$('.block_adresses').hide(); ";
+	$js .= "$('.block_adresses[net_id=\"' + $(this).val() + '\"]').show(); ";
+
+    $js .= "num = $('.block_adresses.active_tab').attr('arr_id'); ";
+	$js .= "for (i=0; i<arr[num].length; i++) ";
+	$js .= "{ ";
+    
+	$js .= "realMap.geoObjects.remove(arr[num][i]); ";
+	$js .= '} ';
+	
+    $js .= "$('.block_adresses.active_tab').removeClass('active_tab'); ";
+	$js .= "num = $(this).attr('arr_id'); ";
+	$js .= "for (i=0; i<arr[num].length; i++) ";
+	$js .= "{ ";
+	$js .= "realMap.geoObjects.add(arr[num][i]); ";
+	$js .= "} ";
+	
+    $js .= "$('.block_adresses[arr_id=' + num + ']').addClass('active_tab'); ";
+	$js .= "realMap.setZoom(9); ";
+    
+    $js .= "realMap.setCenter([".$this->startpos->x.", ".$this->startpos->y."]); ";
+	
+    $js .= "}); ";
+	
+    $js .= '$(".netpoints").click(function(){ ';
+	$js .= 'num = $(this).attr("arr_id"); ';
+	$js .= "num2 = $(this).parent().parent().attr('arr_id'); ";
+	$js .= "arr[num2][num].balloon.open(); ";
+	$js .= "realMap.setZoom(16); ";
+	$js .= "realMap.setCenter(arr[num2][num].geometry.getCoordinates()); ";
+	$js .= "});	";
+	$js .= "$('.more_link_adresses').click(function(){ ";
+	$js .=	"p = $(this).parent().parent(); ";
+	$js .= "$('.more', p).toggle(); ";
+	$js .= "}); ";
+	$js .= "$('.netpoints').change(function() ";
+	$js .= "{ ";
+	$js .= "phones = $(this).attr('phones'); ";
+	$js .= 'if (!phones) { phones = phones.split(";"); }';
+	$js .= '{ if (!phones[0]) ';
+    $js .= '{ ';
+	$js .= "phones[0] = ''; ";
+	$js .= "} ";
+	$js .= "if (!phones[1]) ";
+	$js .= "{ ";
+	$js .= "phones[1] = ''; ";
+	$js .= "} ";
+	$js .= "phones = '<div>' + phones[0] + '</div>' + '<div>' + phones[1] + '</div>'; ";
+	$js .= "$('div.phones').html(phones); }";
+	  
+    $js .= "document.cookie='product".$this->product->virtuemart_product_id."=' + $(this).val() + ':' + $(this).parent().parent().attr('net_id') + '; path=/'; ";
+	
+    $js .= "$('.dostavka').removeAttr('checked'); ";
+
+    $js .= "}); ";
+	 
+    $js .= "$('.dostavka').change(function(){ ";
+
+	$js .= "$('.netpoints').removeAttr('checked'); ";
+	$js .= '$("#adress_container").toggle(); ';
+
+	$js .= "if ($(this).attr('checked')){ ";
+ 
+	$js .= 'document.cookie="product'.$this->product->virtuemart_product_id.'=-1:" + $(".net_control:checked").val() + "; path=/"; ';
+	$js .= '} ';
+	$js .= 'else ';
+	$js .= '{';
+	$js .= 'if ($(".netpoints:checked").val())';
+	$js .= '{';
+	$js .= "document.cookie='product".$this->product->virtuemart_product_id."=' + $('.netpoints:checked').val() + ':' + $('.net_control:checked').val() + '; path=/'; ";
+	$js .= "} ";
+	$js .= "else ";
+	$js .= "{ ";
+	$js .= "document.cookie='product".$this->product->virtuemart_product_id."=' + $('.netpoints:first').val() + ':' + $('.net_control:checked').val() + '; path=/'; ";
+	$js .= "$('.netpoints:first').attr('checked', 'checked'); ";
+	$js .= "} ";
+	$js .= "$(\".block_adresses[net_id='".$params[1]."']\").addClass('active_tab').css('display', 'block'); ";
+	$js .= "} ";
+	$js .= "}); ";
+
+    if ($params[0] == -1) {	
+	$js .= "$('#adress_container').hide(); ";
+	$js .= "$('.net_control[value=".$params[1]."]').attr('checked', 'checked'); ";
+	$js .= "$(\".block_adresses[net_id='".$params[1]."']\").addClass('active_tab').css('display', 'block'); ";
+	$js .= "document.cookie='product".$this->product->virtuemart_product_id."=' + ".$params[0]." + ':' + ".$params[1]." + '; path=/'; ";
 	}	
-	$('.net_control').change(function(){
-	
-	if ($(".dostavka").attr('checked') == "checked")
+	else
 	{
-		document.cookie="product<?php echo $this->product->virtuemart_product_id?>=-1:" + $(this).val() + "; path=/";
+	$js .= 	"$(\".net_control[value='".$params[1]."']\").attr('checked', 'checked'); ";
+	$js .= "$(\".netpoints[value='".$params[0]."']\").attr('checked', 'checked'); ";
+	$js .= "$(\".block_adresses[net_id='".$params[1]."']\").addClass('active_tab').css('display', 'block');	";
+	$js .= "document.cookie='product".$this->product->virtuemart_product_id."=' + ".$params[0]." + ':' + ".$params[1]." + '; path=/';";
 	}
-	
-	$('.block_adresses').hide();
-	$('.block_adresses[net_id="' + $(this).val() + '"]').show();
-		
-		num = $('.block_adresses.active_tab').attr('arr_id');
-			for (i=0; i<arr[num].length; i++)
-			{
-				realMap.geoObjects.remove(arr[num][i]);
-			}
-			$('.block_adresses.active_tab').removeClass('active_tab');
-		num = $(this).attr('arr_id');
-		for (i=0; i<arr[num].length; i++)
-			{
-				realMap.geoObjects.add(arr[num][i]);
-			}
-			$('.block_adresses[arr_id=' + num + ']').addClass('active_tab');
-			realMap.setZoom(9);
-			realMap.setCenter([<?php echo $this->startpos->x?>, <?php echo $this->startpos->y?>]);
-	});
-	
-	$(".netpoints").click(function(){
-		num = $(this).attr('arr_id');
-		num2 = $(this).parent().parent().attr('arr_id')		
-		arr[num2][num].balloon.open();
-		realMap.setZoom(16);
-		realMap.setCenter(arr[num2][num].geometry.getCoordinates());
-		
-	});	
-	$('.more_link_adresses').click(function(){
-		p = $(this).parent().parent();
-		$('.more', p).toggle();
-	});
-	$(".netpoints").change(function()
-	{
-		phones = $(this).attr('phones');
-		phones = phones.split(";");
-		if (!phones[0])
-		{
-			phones[0] = '';
-			
-		}
-		if (!phones[1]) 
-		{
-			phones[1] = '';
-		}
-		phones = '<div>' + phones[0] + '</div>' + '<div>' + phones[1] + '</div>';
-		$('div.phones').html(phones);
-		
-		document.cookie="product<?php echo $this->product->virtuemart_product_id?>=" + $(this).val() + ':' + $(this).parent().parent().attr('net_id') + '; path=/';
-		$('.dostavka').removeAttr('checked');
-	});
-	$(".dostavka").change(function(){
-		$('.netpoints').removeAttr('checked');
-		$("#adress_container").toggle();
-		if ($(this).attr('checked')){
-			document.cookie="product<?php echo $this->product->virtuemart_product_id?>=-1:" + $('.net_control:checked').val() + "; path=/";
-		}
-		else
-		{
-			if ($('.netpoints:checked').val())
-			{
-			document.cookie="product<?php echo $this->product->virtuemart_product_id?>=" + $('.netpoints:checked').val() + ':' + $('.net_control:checked').val() + '; path=/';
-			}
-			else
-			{
-			document.cookie="product<?php echo $this->product->virtuemart_product_id?>=" + $('.netpoints:first').val() + ':' + $('.net_control:checked').val() + '; path=/';
-			$('.netpoints:first').attr('checked', 'checked');
-			}			
-			$(".block_adresses[net_id='<?php echo $params[1];?>']").addClass('active_tab').css('display', 'block');
-		}
-	});
-	<?php if ($params[0] == -1) {?>	
-		$('#adress_container').hide();
-		$('.net_control[value=<?php echo $params[1];?>]').attr('checked', 'checked');
-		$(".block_adresses[net_id='<?php echo $params[1];?>']").addClass('active_tab').css('display', 'block');
-		document.cookie="product<?php echo $this->product->virtuemart_product_id?>=" + <? echo $params[0]?> + ':' + <? echo $params[1]?> + '; path=/';
-	<?php }	
-		else
-		{
-	?>
-			$(".net_control[value='<?php echo $params[1];?>']").attr('checked', 'checked');			
-			$(".netpoints[value='<?php echo $params[0];?>']").attr('checked', 'checked');
-			$(".block_adresses[net_id='<?php echo $params[1];?>']").addClass('active_tab').css('display', 'block');			
-			document.cookie="product<?php echo $this->product->virtuemart_product_id?>=" + <? echo $params[0]?> + ':' + <? echo $params[1]?> + '; path=/';
-	<?php
-		}
-	?>
-	phones = $('.selecetednetpoint').attr('phones');
-	phones = phones.split(";");	
-	if (!phones[0])
-	{
-		phones[0] = '';
-		
-	}
-	if (!phones[1]) 
-	{
-		phones[1] = '';
-	}
-	phones = '<div>' + phones[0] + '</div>' + '<div>' + phones[1] + '</div>';
-	$('div.phones').html(phones);	
-});
-</script>
+       
+	$js .= "phones = $('.selecetednetpoint').attr('phones'); ";
+	$js .= 'phones = phones.split(";");	';
+	$js .= "if (!phones[0]) ";
+	$js .= "{ ";
+	$js .= "phones[0] = ''; ";
+	$js .= "}";
+	$js .= "if (!phones[1]) ";
+	$js .= "{ ";
+	$js .= "phones[1] = ''; ";
+	$js .= "}";
+	$js .= "phones = '<div>' + phones[0] + '</div>' + '<div>' + phones[1] + '</div>';";
+	$js .= "$('div.phones').html(phones);";
+    $js .= "});";
+    $document = JFactory::getDocument();
+    $document->addScriptDeclaration($js);
+?>
 <div style="clear:both;"></div>

@@ -923,6 +923,18 @@ margin-top:5px;
 border: 1px solid #C6C3C3;
 position:relative;
 }
+.main-text
+{
+margin: 0px auto;
+padding: 0px;
+width: 1150px;
+background:white;
+padding-top:10px;
+padding-bottom:10px;
+margin-top:5px;
+border: 1px solid #C6C3C3;
+position:relative;
+}
 #footer a {color: #fff;}
 .copy  {text-align:center; display:block; padding-left:10px;}
 .footer1 {float:left; display:block; margin-left:20px;}
@@ -1253,7 +1265,10 @@ padding:6px;
 }
 #footer .bottom-menu a
 {
-color:black;
+color:#C6C3C3;
+display:block;
+float:left;
+margin-right:10px;
 }
 #footer .bottom-menu 
 {

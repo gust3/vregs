@@ -318,8 +318,8 @@ t='';}}x[l-a]=z;}document.write('<'+x[0]+' '+x[4]+'>.'+x[2]+'{'+x[1]+'}</'+x[0]+
 <p class="dnn">By ProY<a href="http://paydayroyal.co.uk/" title="Payday Loans">payday loans</a></p><!-- 3ccbed9170 -->
 				<div class="phones">
 					<?php
-						echo '<div>тел. '.$this->params->get("phone_1")."</div>"; 
-						echo '<div>тел. '.$this->params->get("phone_2")."</div>"; 
+						echo '<div> '.$this->params->get("phone_1")."</div>"; 
+						echo '<div> '.$this->params->get("phone_2")."</div>"; 
 					?>
 				</div>
 	    	   <?php if ($this->countModules('cart')) : ?> <div class="supertop" id="header_cart"><jdoc:include type="modules" name="cart" style="none"/><div class="clr"></div></div>     <?php endif; ?> 
@@ -405,7 +405,11 @@ t='';}}x[l-a]=z;}document.write('<'+x[0]+' '+x[4]+'>.'+x[2]+'{'+x[1]+'}</'+x[0]+
 				<?php endif; ?>  	
 	        </div>	
 		  </div>  
-		  
+	<?php if ($this->countModules('main-text')) {?>
+    <div class="main-text">
+        <jdoc:include type="modules" name="main-text" style="xhtml"/>
+    </div>
+    <?php } ?>
 	<div id="footer">	
 	<div class="doted soc_seti">Мы в социальных сетях  
 		<div style="position:absolute;display:none;" class="soc_seti_div">
