@@ -1263,9 +1263,12 @@ text-transform:uppercase;
 {
 padding:6px;
 }
-#footer .bottom-menu a
+#footer .bottom-menu li a
 {
 color:#C6C3C3;
+}
+#footer .bottom-menu  li
+{
 display:block;
 float:left;
 margin-right:10px;

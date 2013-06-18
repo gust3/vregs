@@ -6,6 +6,23 @@ $p = 'product'.$this->product->virtuemart_product_id;
 if ($_COOKIE[$p])
 {
 	$params = explode(":", $_COOKIE[$p]);
+    
+    if (!in_array($params[0], $this->nets)) 
+    {        
+    foreach ($this->nets as $item)
+        {
+            if (!$item->adresses) 
+            {
+                continue;
+            }
+            else
+            {
+                $params[0] = $item->adresses[0]->id;
+                $params[1] = $item->id_net;
+                break;
+            }
+        }
+    }
 }
 else
 {
@@ -171,28 +188,28 @@ $js = 'jQuery(function($){ ';
 $js .= 'arr = new Array(); ';
 $i=0;
 foreach ($this->nets as $item){
-    $js .= 'arr.push(new Array()); ';
+    $js .= 'arr.push(new Array()); 
+    ';
     $i++;
 }
-$js .= 'ymaps.ready(init); ';
-$js .= 'function init(){ ';
-$js .= 'realMap = new ymaps.Map ("real_map", { ';
-$js .= 'center: ['.$this->startpos->x.', '.$this->startpos->y.'], ';
-$js .= 'zoom: 9 ';
-$js .= '}); ';
-$js .= 'realMap.controls.add( ';
-$js .= 'new ymaps.control.ZoomControl() ';
-$js .= ');';
+$js .= 'ymaps.ready(init); 
+    function init(){
+    realMap = new ymaps.Map ("real_map", { 
+    center: ['.$this->startpos->x.', '.$this->startpos->y.'], 
+    zoom: 9
+    }); 
+    realMap.controls.add( 
+    new ymaps.control.ZoomControl());';
 $j = 0;
 $i = 0;
 
 foreach ($this->nets as $item){
 if (($item->adresses == 'same') || (!$item->adresses)) continue;
     foreach ($item->adresses as $adress) {	
-    $js .=  'var myGeocoder = ymaps.geocode("'.$adress->adress.'"); ';				
-    $js .= 'myGeocoder.then( ';
-    $js .= 'function (res) { ';
-    $js .= 'placemark = new ymaps.Placemark(res.geoObjects.get(0).geometry.getCoordinates(), { ';
+    $js .=  'var myGeocoder = ymaps.geocode("'.$adress->adress.'"); 
+        myGeocoder.then( 
+        function (res) { 
+            placemark = new ymaps.Placemark(res.geoObjects.get(0).geometry.getCoordinates(), { ';
     $js .= "content: '".$adress->adress."', ";
     $js .= "balloonContent: '".$adress->adress."<br>".$adress->clocks."' ";
     $js .= "}); ";		
@@ -206,10 +223,10 @@ if (($item->adresses == 'same') || (!$item->adresses)) continue;
 					$j=1;
 			}
 	}
-    $js .= '}, ';
-	$js .= 'function (err) { ';
-	$js .= '} ';
-	$js .= '); ';
+    $js .= '}, 
+    function (err) { 
+    } 
+    ); ';
 	}
 		$i++;
 }
@@ -218,7 +235,7 @@ if (($item->adresses == 'same') || (!$item->adresses)) continue;
     $js .= "$('.net_control').change(function(){ ";
 	$js .= 'if ($(".dostavka").attr("checked") == "checked") ';
     $js .= '{ ';
-	$js .= 'document.cookie="product<?php echo $this->product->virtuemart_product_id?>=-1:" + $(this).val() + "; path=/"; ';
+	$js .= 'document.cookie="product'.$this->product->virtuemart_product_id.'=-1:" + $(this).val() + "; path=/"; ';
 	$js .= '} ';
    
 	$js .= "$('.block_adresses').hide(); ";
@@ -316,7 +333,7 @@ if (($item->adresses == 'same') || (!$item->adresses)) continue;
 	}
        
 	$js .= "phones = $('.selecetednetpoint').attr('phones'); ";
-	$js .= 'phones = phones.split(";");	';
+	$js .= 'if (phones) { phones = phones.split(";");	';
 	$js .= "if (!phones[0]) ";
 	$js .= "{ ";
 	$js .= "phones[0] = ''; ";
@@ -326,7 +343,7 @@ if (($item->adresses == 'same') || (!$item->adresses)) continue;
 	$js .= "phones[1] = ''; ";
 	$js .= "}";
 	$js .= "phones = '<div>' + phones[0] + '</div>' + '<div>' + phones[1] + '</div>';";
-	$js .= "$('div.phones').html(phones);";
+	$js .= "$('div.phones').html(phones); }";
     $js .= "});";
     $document = JFactory::getDocument();
     $document->addScriptDeclaration($js);
