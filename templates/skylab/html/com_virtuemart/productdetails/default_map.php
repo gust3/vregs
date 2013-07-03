@@ -11,7 +11,7 @@ if ($_COOKIE[$p])
     {        
     foreach ($this->nets as $item)
         {
-            if (!$item->adresses) 
+            if (!$item->adresses[0]->id) 
             {
                 continue;
             }
@@ -28,7 +28,7 @@ else
 {
 foreach ($this->nets as $item)
 {
-	if (!$item->adresses) 
+	if (!$item->adresses[0]->id) 
 	{
 		continue;
 	}
@@ -276,7 +276,7 @@ if (($item->adresses == 'same') || (!$item->adresses)) continue;
 	$js .= "$('.netpoints').change(function() ";
 	$js .= "{ ";
 	$js .= "phones = $(this).attr('phones'); ";
-	$js .= 'if (!phones) { phones = phones.split(";"); }';
+	$js .= 'if (phones) { phones = phones.split(";"); }';
 	$js .= '{ if (!phones[0]) ';
     $js .= '{ ';
 	$js .= "phones[0] = ''; ";
