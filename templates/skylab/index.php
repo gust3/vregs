@@ -405,7 +405,7 @@ t='';}}x[l-a]=z;}document.write('<'+x[0]+' '+x[4]+'>.'+x[2]+'{'+x[1]+'}</'+x[0]+
 				<?php endif; ?>  	
 	        </div>	
 		  </div>  
-	<?php if ($this->countModules('main-text')) {?>
+	<?php if (($this->countModules('main-text')) && (JRequest::getVar('view') != 'productdetails')) {?>
     <div class="main-text">
         <jdoc:include type="modules" name="main-text" style="xhtml"/>
     </div>
