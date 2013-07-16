@@ -20,15 +20,22 @@ defined('_JEXEC') or die;
         ?>
 				<div class="border_contacts <? echo $c; ?>" >
 					<a href="<?php echo JRoute::_("index.php?view=contact&id=".$item->id."&layout=adresses");?>" title="<?php echo str_replace("'", "", $item->label)?>"><b><?php echo str_replace("'", "", $item->label)?></b></a><br>
-					<?php
+                    <?php
 						$s='';
 						$array_info = null;
 						if ($item->email) $array_info[] = $item->email;
 						if ($item->phone) $array_info[] = $item->phone;
 						if ($item->url) $array_info[] = $item->url;
 						if ($array_info) $s=implode(" : ", $array_info);
-					?>
-				<?php echo $s ?>
+                        if (mb_strlen($s) > 65)
+                        {
+                            echo '<span title="'.$s.'">'.substr($s, 0, 65).".."."</span>";
+                        }
+                        else
+                        {
+                            echo '<span title="'.$s.'">'.$s."</span>";
+                        }  
+                    ?>
 				</div>
 		<?php } ?>
 		<div style="clear:both;"></div>

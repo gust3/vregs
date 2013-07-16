@@ -9,7 +9,7 @@ include '../administrator/components/com_gustvmtools/panel.php';
 
 		
  <?php foreach($this->form->getFieldset() as $field): ?>
- <li><?php echo $field->label; echo $field->input;?></li>
+ <div style="margin-bottom:10px; clear:both;"><?php echo $field->name; echo '<br><div>'.$field->input."</div>";?></div></br>
  <?php endforeach; ?>
  
  
