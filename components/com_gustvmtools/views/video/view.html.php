@@ -24,7 +24,8 @@ class gustVMtoolsViewVideo extends JView
 	// Overwriting JView display method
 	function display($tpl = null) 
 	{
-		// Assign data to the view
+		 if (JRequest::getVar('limit') < 5) JRequest::setVar('limit', 10);    
+    // Assign data to the view
 		$this->items = $this->get('Items'); 
         // Получаем объект постраничной навигации.
         $this->pagination = $this->get('Pagination'); 

@@ -19,6 +19,14 @@
  */
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
+if (JRequest::getVar('action_html') == "saveobzor")
+{
+    $db = JFactory::getDBO();
+    $query ="INSERT #__vmtools_opisanie SET published = 1, text = ".$db->quote(JRequest::getVar('html')).", product_id =".$this->product->virtuemart_product_id;
+    $db->setQuery($query);
+    $db->query();
+    header('Location: ' . "http://video-registratory.com/obzor/".$this->product->slug);
+}
 
 // addon for joomla modal Box
 JHTML::_('behavior.modal');
@@ -304,9 +312,45 @@ case 'obzor':
 //слой описание
 ?>
 	<div style="clear:both;">
-		<?php foreach ($this->obzor as $item) {?>
+		<?php 
+    if (count($this->obzor) == 0)
+    {
+    ?>
+    <h2>Обзор видеорегистратора <?php echo $this->product->product_name ?></h2>
+    <p>Это автомобильный видеорегистратор, позволяющий вести наблюдение за дорогой. Это устройство дает возможность чувствовать себя безопаснее на дороге. Прежде всего легче установить  правду и вы защищены от произвола ГАИ.</p>
+    <p>Для этого видеорегистратора нет подробного обзора. Вы можете добавить его.</p>
+   
+    <?php
+    $user = & JFactory::getUser();
+    ?>
+    <form method="post">
+    <?php
+    if (!$user->guest) {
+        
+        //Подключение редактора
+    $editor =& JFactory::getEditor();
+    echo $editor->display('html', "", '550', '400', '60', '20', true );
+    ?>
+    <input type="submit" class="button" value="добавить" style="margin-left:790px;">
+    <input type="hidden" value="saveobzor" name="action_html">
+    </form>
+    <?php
+    }
+    else
+    {
+    ?>
+    <p><strong>Зарегестрируйтесь чтобы добавить</strong></p>
+    <?php
+    }
+    }
+    else
+    {
+    foreach ($this->obzor as $item) {?>
 				<div style="padding:10px;"><?php echo $item->text?></div>
-		<?php } ?>
+	<?php 
+    }
+    }
+    ?>
 	</div>
 <?php
 	break;

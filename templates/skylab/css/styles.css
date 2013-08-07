@@ -20,6 +20,11 @@ a {color: black;text-decoration:none;font-size:12px;}
     font-style: normal;
 
 }
+.CodeMirror-wrapping
+{
+width:885px !important;
+border:1px solid #C6C3C3;
+}
 a.manufacturer-link
 {
 text-decoration:underline;
