@@ -388,7 +388,7 @@ class VirtueMartViewProductdetails extends VmView {
 		
 		$DATA -> startpos = $startpos;
 		
-		$query = 'SELECT np.id_net AS id_net, np.price AS price, ns.ymname AS ymname, ns.label AS label, ns.dostavka AS dostavka FROM #__vmtools_nets_products AS np, #__vmtools_netshop AS ns WHERE np.published = 1 AND ns.published = 1 AND np.id_net = ns.id AND np.id_product='.$virtuemart_product_id."  ORDER BY np.price ASC";
+		$query = 'SELECT np.id_net AS id_net, np.price AS price, ns.ymname AS ymname, ns.label AS label, ns.dostavka AS dostavka FROM #__vmtools_nets_products AS np, #__vmtools_netshop AS ns WHERE np.published = 1 AND ns.published = 1 AND np.id_net = ns.id AND np.id_product='.$virtuemart_product_id." ORDER BY np.price ASC";
 		$db->setQuery($query);
 		$nets = $db->loadObjectList();	
 
@@ -400,6 +400,10 @@ class VirtueMartViewProductdetails extends VmView {
 				$query = 'SELECT id, adress, clocks, phones FROM #__vmtools_shops_adresses WHERE id_region='.$_COOKIE['region'].' AND published = 1 AND id_net = '.$net->id_net;
 				$db->setQuery($query);
 				$adresses = $db->loadObjectList();
+                $query = 'SELECT text FROM #__vmtools_dostavka WHERE region='.$_COOKIE['region'].' AND product_id = '.$virtuemart_product_id.' AND net_id = '.$net->id_net." LIMIT 1";
+				$db->setQuery($query);
+                $dostavka = $db->loadResult();
+                $net->dostavka = $dostavka;
 				$net->adresses = $adresses;
 				$s[] = $net->id_net;
 			}

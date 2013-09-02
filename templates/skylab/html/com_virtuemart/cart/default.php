@@ -180,7 +180,7 @@ function set_coupon() {
 
 
 function update_form(task,id) {
-	var did=id;
+    var did=id;
 	if(task=='update_product') {
 		if(document.id('quantity_'+id).value<=0) {
 			return alert('<?php echo Jtext::_('PLG_VM2_ONEPAGECHECKOUT_NEGATIVE'); ?>');
@@ -228,7 +228,7 @@ function update_form(task,id) {
 								mod.find(".vm_cart_products").html("");
 								mod.find(".total").html(datas.billTotal);
 							}
-							mod.find(".total_products").html(datas.totalProductTxt);
+							//mod.find(".total_products").html(datas.totalProductTxt);
 						}
 					);
 				}
@@ -237,15 +237,17 @@ function update_form(task,id) {
 				    <?php if ( VmConfig::get('show_tax')) { ?>
 				    document.id('subtotal_tax_amount_'+id).set('text',json.price.products[id].subtotal_tax_amount);
 				    <?php } ?>
-				    document.id('subtotal_discount_'+id).set('text',json.price.products[id].subtotal_discount);
-				    document.id('subtotal_with_tax_'+id).set('html',json.price.products[id].subtotal_with_tax);
+				    
+                    /*
+                    document.id('subtotal_discount_'+id).set('text',json.price.products[id].subtotal_discount);
+				    document.id('subtotal_with_tax_'+id).set('html',json.price.products[id].subtotal_with_tax);*/
 				}
-				
 				<?php if ( VmConfig::get('show_tax')) { ?>
 					document.id('tax_amount').set('text',json.price.taxAmount);
 				<?php } ?>
-				document.id('discount_amount').set('text',json.price.discountAmount);
-				document.id('sales_price').set('text',json.price.salesPrice);
+				
+                document.id('discount_amount').set('text',json.price.discountAmount);
+				//document.id('sales_price').set('text',json.price.salesPrice);
 				
 				<?php if ( VmConfig::get('show_tax')) { ?>
 					document.id('shipment_tax').set('text',json.price.shipmentTax);
@@ -376,7 +378,7 @@ function submit_order() {
 				item.set('value',bill_to.getElementById(name).get('value'));
 			}
 		});
-		document.id('table_shipto').getElementById('shipto_virtuemart_country_id').set('value',document.id('table_billto').getElementById('virtuemart_country_id').get('value'));
+		/*document.id('table_shipto').getElementById('shipto_virtuemart_country_id').set('value',document.id('table_billto').getElementById('virtuemart_country_id').get('value'));*/
 	} else {
 		var validator=new JFormValidator();
 		validator.attachToForm(document.id('table_billto'));
@@ -440,12 +442,7 @@ function submit_order() {
 
 	
 
-		<?php // Leave A Comment Field ?>
-		<div class="customer-comment marginbottom15">
-			<span class="comment"><?php echo JText::_('COM_VIRTUEMART_COMMENT'); ?></span><br />
-			<textarea class="customer-comment" name="customer_comment" cols="50" rows="4"><?php echo $this->cart->customer_comment; ?></textarea>
-		</div>
-		<?php // Leave A Comment Field END ?>
+
 
 
 
@@ -500,10 +497,15 @@ function submit_order() {
 		<?php //vmdebug('my cart',$this->cart);// Continue and Checkout Button END ?>
 
 		<!--<input type='hidden' name='task' value='<?php echo $this->checkout_task; ?>'/>-->
-		<input type='hidden' name='task' value='confirm'/>
+		
+        <input type='hidden' name='task' value='confirm'/>
 		<input type='hidden' name='option' value='com_virtuemart'/>
 		<input type='hidden' name='view' value='cart'/>
 		<input type="hidden" name="virtuemart_country_id" id="virtuemart_country_id" value="176"/>
-		<input type="hidden" name="shipto_virtuemart_country_id" id="shipto_virtuemart_country_id" value="176"/>
+		<div id='table_shipto'>
+        <input type="hidden" name="shipto_virtuemart_country_id" id="shipto_virtuemart_country_id" value="176"/>
+        </div>
+        <input type="hidden" name="discount_amount" id="discount_amount"/>
+        <input type="hidden" name="total_amount" id="total_amount"/>
 </div>
 </form>

@@ -28,11 +28,6 @@ $db = JFactory::getDBO();
 $sr = explode(',', $_COOKIE['vm_sravnenie_value']);
 foreach ( $productList as $product ) {
 	
-	$query = 'SELECT sa.adress FROM #__vmtools_nets_products AS np, #__vmtools_shops_adresses AS sa WHERE sa.id_net = np.id_net AND sa.id_region = '.$_COOKIE['region'].' AND np.id_product ='.$product->virtuemart_product_id;
-	$db->setQuery($query);
-	$adresses = $db->loadObjectList();	
-	if (count($adresses) == 0) continue;
-	
 	// Show the horizontal seperator
 	if ($col == 1 && $nb > $products_per_row) { ?>
 	<div class="horizontal-separator"></div>

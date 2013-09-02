@@ -19,7 +19,7 @@ if (get_magic_quotes_gpc()) $q = stripslashes($q);
 
 
 $db =& JFactory::getDBO();
-$query = "SELECT DISTINCT model FROM #__toolsvmproducts WHERE model like '%".$_GET['str']."%'";
+$query = "SELECT DISTINCT model FROM #__vmtools_products WHERE model like '%".$_GET['str']."%'";
 $db->setQuery($query);
 $models = $db->loadObjectList();
 
@@ -55,7 +55,7 @@ if (get_magic_quotes_gpc()) $q = stripslashes($q);
 
 
 $db =& JFactory::getDBO();
-$query = "SELECT DISTINCT model FROM #__toolsvmproducts WHERE model like '%".$_GET['str']."%'";
+$query = "SELECT DISTINCT model FROM #__vmtools_products WHERE model like '%".$_GET['str']."%'";
 $db->setQuery($query);
 $models = $db->loadObjectList();
 

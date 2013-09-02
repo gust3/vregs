@@ -3,7 +3,7 @@
 defined('_JEXEC') or die;
 $db =& JFactory::getDBO();
 foreach ($this->items as $i => $item): 
-$query = "SELECT model FROM #__toolsvmproducts WHERE id=".$item->product_id;
+$query = "SELECT model FROM #__vmtools_products WHERE id=".$item->product_id;
 $db->setQuery($query);	
 $name = $db->loadresult();
 ?>

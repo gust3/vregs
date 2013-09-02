@@ -331,8 +331,8 @@ function reset_form() {
 	}
 	?> <div class="clr"></div>
 	<div class="reset">
-		<input class="button" type="button" onclick="reset_form();" value="<?php echo JText::_('MOD_VM2_RESET_FORM'); ?>" style="float:left;"/>
 		<input class="button" id="apply_button" type="button" onclick="" value="<?php echo JText::_('применить'); ?>" style="float:left;"/>
+        <input class="button" type="button" onclick="reset_form();" value="<?php echo JText::_('MOD_VM2_RESET_FORM'); ?>" style="float:left;"/>
 	</div>
 	<div style="clear:both;"></div>
 	<input type="hidden" name="virtuemart_category_id" id="virtuemart_category_id" value="<?php //echo JRequest::getInt('virtuemart_category_id'); ?>0" />

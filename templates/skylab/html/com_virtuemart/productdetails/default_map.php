@@ -53,7 +53,6 @@ $i = 0;
 <?php
 foreach ($this->nets as $item)
 {
-
 if (($item->adresses == 'same') || (!$item->adresses))continue;
 if (!$item->label) 
 {
@@ -86,10 +85,16 @@ $item->label = $item->ymname;
 			}
 			if ($j >= 13) echo "<div style='clear:both; text-align:center;'><span class='more_link_adresses' style='cursor:pointer;' show='1'>показать/скрыть все</span></div>";
 		?>
+            <div style="clear:both;"></div>
+        <?php
+            echo "<div>".$item->dostavka."</div>";
+        ?>
 	</div>
+   
 </div>
 <?php
 $i++;
+if ($i == 5) break;
 }
 ?>
 <div style="clear:both">

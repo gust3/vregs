@@ -7,7 +7,7 @@ body {font:62.5%/1.2 Tahoma,Geneva,sans-serif; color: #666; background: #f2f2f2;
 #col3 .moduletable .res, #col2 .moduletable .res {padding: 10px !important;}
 h1,h2,h3,h4,.componentheading {color: #818a8e; font-weight:bold;margin:0px;}
 h1,.componentheading {font-size:140%; margin:10px 0 20px 0}
-h2 {font-size:140%;}
+h2 {font-size:140%;padding:15px 0px;}
 h3 {font-size:130%;}
 h4 {font-size:110%;}
 a {color: black;text-decoration:none;font-size:12px;}

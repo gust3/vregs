@@ -88,8 +88,28 @@ $db = JFactory::getDBO();
 	    echo '</div>';
 		?>
 	</div>
-
-	<div class="width50 floatleft" id="div_shipto" style="display:none;">
+    <div class="width50 floatleft" id="div_shipto">
+    
+    		<?php // Leave A Comment Field ?>
+		<div class="customer-comment marginbottom15" style="margin-right:20px;">
+			<span class="comment"><?php echo JText::_('COM_VIRTUEMART_COMMENT'); ?></span><br />
+			<textarea style="margin-top:15px;" class="customer-comment" name="customer_comment" cols="50" rows="6"><?php echo $this->cart->customer_comment; ?></textarea>
+		</div>
+		<?php // Leave A Comment Field END ?>   
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	
+    <div class="width50 floatleft" id="div_shipto" style="display:none;">
 		<span class="vmicon vm2-shipto-icon"></span>
 		<div class="output-shipto">
 		<?php
@@ -97,7 +117,7 @@ $db = JFactory::getDBO();
 			if(!class_exists('VmHtml'))require(JPATH_VM_ADMINISTRATOR.DS.'helpers'.DS.'html.php');
 				echo JText::_('COM_VIRTUEMART_USER_FORM_ST_SAME_AS_BT');
 				?>
-				<input class="inputbox" type="checkbox" name="STsameAsBT" id="STsameAsBT" <?php echo $params->get('check_shipto_address')==1?'checked="checked"':''; ?> value="1" onclick="set_st(this);"/><br />
+				<input class="inputbox" type="checkbox" name="STsameAsBT" id="STsameAsBT" checked="checked" value="1" onclick="set_st(this);"/><br />
 				<?php
 		}
  		?>
@@ -164,8 +184,11 @@ $db = JFactory::getDBO();
 			{
 			$query = 'SELECT adress, id FROM #__vmtools_shops_adresses WHERE id_region='.$_COOKIE['region'].' AND id_net='.$net->id_net;
 			$db->setQuery($query);
-			$net->adresses = $db->loadObjectList();	
-		}
+			$net->adresses = $db->loadObjectList();
+            $query = 'SELECT text FROM #__vmtools_dostavka WHERE region='.$_COOKIE['region'].' AND product_id = '.$prow->virtuemart_product_id.' AND net_id = '.$net->id_net." LIMIT 1";
+			$db->setQuery($query);
+            $net->dostavka = $db->loadResult();
+            }
 			?>
 			<tr valign="top" class="sectiontableentry<?php echo $i ?>" id="product_row_<?php echo $pkey; ?>">
 				<td align="left" >
@@ -213,8 +236,38 @@ $db = JFactory::getDBO();
 						?>				
 					</select>
 					<input p_id="<?php echo $prow->virtuemart_product_id;?>" <?php if ($adress_cookie_id == -1) echo " checked='checked' "?> type="checkbox" style="float:left;"> <span style="float:left; margin-top:-7px">доставка</span>
-					<div class="adresses" style="both:clear; width:500px; <?php if ($adress_cookie_id == -1) echo "display:none;"?>" >					
-						<?php					
+					<div class="all-dostavka" <?php if ($adress_cookie_id != -1) echo "style='display:none;'"?>>
+                    <?php
+                    foreach ($nets as $net)
+							{
+								$text='';
+								if (!$net->adresses) continue;
+								if (($net->id_net == $net_cookie_id) && ($adress_cookie_id == 'choose'))
+								{
+									$adress_cookie_id = $adresses->id;
+								}
+								if ($net_cookie_id == $net->id_net)
+								{
+									$text = 'display:block;';
+                                    $text2 = 'display:none;';
+								}
+								else
+								{
+									$text = 'display:none;';
+                                    $text2 = 'display:block;';
+								}
+								if (!$net_cookie_id)
+								{
+									$text = 'display:block;'; $net_cookie_id = "none";
+								}
+								?>
+                                <div class="dostavka" id_net="<?php echo $net->id_net;?>" style="<?php echo $text;?> clear:both;">
+                                    <?php echo $net->dostavka;?>
+                                </div>
+                    <?php } ?>
+                    </div>
+                    <div class="adresses" style="both:clear; width:500px; <?php if ($adress_cookie_id == -1) echo "display:none;"?>" >					
+						<?php
 							foreach ($nets as $net)
 							{
 								$text='';
@@ -274,7 +327,7 @@ $db = JFactory::getDBO();
 
 		  <tr class="sectiontableentry1">
 			<td  align="right"><?php echo JText::_('COM_VIRTUEMART_ORDER_PRINT_PRODUCT_PRICES_TOTAL'); ?></td>
-			<td align="right" id="sales_price"><?php echo $this->currencyDisplay->createPriceDiv('salesPrice','', $this->cart->pricesUnformatted,false) ?></td>
+			<td align="right" id="sales_price"><?php echo $this->currencyDisplay->createPriceDiv('salesPrice', '0', $this->cart->pricesUnformatted,false) ?></td>
 		  </tr>
 
 			<?php
@@ -381,11 +434,11 @@ $db = JFactory::getDBO();
 					JText::_('COM_VIRTUEMART_CART_PAYMENT'); 
 				}
 				?> </td>
-				<td align="right" id="payment"><?php  echo $this->currencyDisplay->createPriceDiv('salesPricePayment','', $this->cart->pricesUnformatted['salesPricePayment'],false); ?> </td>
+				<td align="right" id="payment"><?php  echo $this->currencyDisplay->createPriceDiv('salesPricePayment',0, $this->cart->pricesUnformatted['salesPricePayment'],false); ?> </td>
 			</tr>
 		  <tr class="sectiontableentry2" style="display:none;">
 				<td align="right"><?php echo JText::_('COM_VIRTUEMART_CART_TOTAL') ?>: </td>
-       			<td align="right"><strong id="bill_total"><?php echo $this->currencyDisplay->createPriceDiv('billTotal','', $this->cart->pricesUnformatted['billTotal'],false) ?></strong></td>
+       			<td align="right"><strong id="bill_total"><?php echo $this->currencyDisplay->createPriceDiv('billTotal',0, $this->cart->pricesUnformatted['billTotal'],false) ?></strong></td>
 		  </tr>
 		    <?php
 		    if ( $this->totalInPaymentCurrency) {
@@ -393,7 +446,7 @@ $db = JFactory::getDBO();
 
 		       <tr class="sectiontableentry2">
 					    <td align="right"><?php echo JText::_('COM_VIRTUEMART_CART_TOTAL_PAYMENT') ?>: </td>
-					    <td align="right"><strong><?php echo $this->currencyDisplay->createPriceDiv('totalInPaymentCurrency','', $this->totalInPaymentCurrency,false); ?></strong></td>
+					    <td align="right"><strong><?php echo $this->currencyDisplay->createPriceDiv('totalInPaymentCurrency', 0 , $this->totalInPaymentCurrency,false); ?></strong></td>
 				      </tr>
 				      <?php
 		    }
@@ -406,12 +459,13 @@ $db = JFactory::getDBO();
 jQuery(function($){
 
 $('.net').change(function(){
-
 p = $(this).parent();
 $('.adress', p).hide();
 id_net = $(this).val();
 chk = $('input', p);
 $('.adress[id_net=' + id_net +']', p).show();
+$('.dostavka', p).hide();
+$('.dostavka[id_net=' + id_net +']', p).show();
 if ($(chk).attr('checked') == 'checked'){
 	id_adress = -1;
 }
@@ -419,14 +473,15 @@ else{
 	id_adress = $('.adress[id_net=' + id_net + ']', p).val();
 }
 needed_cookie = id_adress + ':' + id_net;
-document.cookie="product" + $(chk).attr('p_id') + "=" + needed_cookie + '; path=/';
+document.cookie='product' + $(chk).attr('p_id') + '=' + needed_cookie + '; path=/';
 
 totallprice = 0;
 $('.net').each(function(){
-	totallprice = totallprice + parseInt($("option:selected", this).attr('price'));
+	$s = $(this).parent().parent();
+    totallprice = totallprice + (parseInt($('option:selected', this).attr('price'))*$(".inputbox", $s).val());
 });
 totallprice = totallprice + ' руб';
-$('.PricesalesPrice').html(totallprice);
+$('#sales_price').html(totallprice);
 
 });
 
@@ -444,7 +499,7 @@ else
 	id_net = $('.net', p).val();
 }
 needed_cookie = id_adress + ':' + id_net;
-document.cookie="product" + $(this).attr('p_id') + "=" + needed_cookie + '; path=/';
+document.cookie='product' + $(this).attr('p_id') + "=" + needed_cookie + '; path=/';
 });
 
 //флажок доставка
@@ -452,6 +507,7 @@ $('input[p_id]').change(function(){
 p = $(this).parent();
 id_net = $('.net', p).val();
 $('div.adresses', p).toggle();
+$('.all-dostavka').toggle();
 if ($(this).attr('checked') == 'checked'){
 	id_adress = -1;
 }
@@ -459,17 +515,18 @@ else{
 	id_adress = $('.adress[id_net=' + id_net + ']', p).val();
 }
 needed_cookie = id_adress + ':' + id_net;
-document.cookie="product" + $(this).attr('p_id') + "=" + needed_cookie + '; path=/';
+document.cookie='product' + $(this).attr('p_id') + '=' + needed_cookie + '; path=/';
 });
 //подсчитываем сумму
 
 totallprice = 0;
 $('.net').each(function(){
-	totallprice = totallprice + parseInt($("option:selected", this).attr('price'));
+	$s = $(this).parent().parent();
+    totallprice = totallprice + (parseInt($('option:selected', this).attr('price'))*$(".inputbox", $s).val());
+    
 });
 totallprice = totallprice + ' руб';
-$('.PricesalesPrice').html(totallprice);
-
+$('#sales_price').html(totallprice);
 
 //выбираем адресс
 $('.adress').change(function(){
@@ -484,8 +541,9 @@ else{
 	id_adress = $('.adress[id_net=' + id_net + ']', p).val();	
 }
 needed_cookie = id_adress + ':' + id_net;
-document.cookie="product" + $(chk).attr('p_id') + "=" + needed_cookie + '; path=/';
+document.cookie = 'product' + $(chk).attr('p_id') + '=' + needed_cookie + '; path=/';
 });
 
 });
+
 </script>

@@ -37,11 +37,12 @@ if ($show_product_list) {
 
 			<?php }
 		}
+        
 		?>
 		</div>
 	</div>
-<?php } ?>
-
+<?php } 
+?>
 <div class="total" style="float: right;">
 	<?php if ($data->totalProduct and $show_price) echo  $data->billTotal; ?>
 </div>

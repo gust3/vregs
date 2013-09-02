@@ -12,7 +12,7 @@ class TableProducts extends JTable
  var $desc = '';
 function __construct(&$db)
 	{
-		parent::__construct( '#__toolsvmproducts', 'id', $db );
+		parent::__construct( '#__vmtools_products', 'id', $db );
 	}
  }
  ?>

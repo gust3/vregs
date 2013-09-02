@@ -1478,7 +1478,8 @@ vmdebug('plgVmOnCheckoutCheckDataShipment CART', $retValues);
 		if (!class_exists('CurrencyDisplay'))
 			require(JPATH_VM_ADMINISTRATOR . DS . 'helpers' . DS . 'currencydisplay.php');
 		$currency = CurrencyDisplay::getInstance();
-
+        $db =& JFactory::getDBO();
+        
 		foreach ($this->products as $priceKey=>$product){
 
 			//$vars["zone_qty"] += $product["quantity"];
@@ -1507,6 +1508,7 @@ vmdebug('plgVmOnCheckoutCheckDataShipment CART', $retValues);
 // 			$this->data->products[$i]['prices'] = $this->prices[$priceKey]['subtotal_with_tax'];
 			$this->data->products[$i]['pricesUnformatted'] = $this->pricesUnformatted[$priceKey]['subtotal_with_tax'];
 			$this->data->products[$i]['prices'] = $currency->priceDisplay( $this->pricesUnformatted[$priceKey]['subtotal_with_tax'] );
+            $this->data->products[$i]['id'] = $product->virtuemart_product_id;
 
 			// other possible option to use for display
 			$this->data->products[$i]['subtotal'] = $this->pricesUnformatted[$priceKey]['subtotal'];
@@ -1519,8 +1521,26 @@ vmdebug('plgVmOnCheckoutCheckDataShipment CART', $retValues);
 			$this->data->totalProduct += $product->quantity ;
 
 			$i++;
+            
+            if ($_COOKIE["product".$product->virtuemart_product_id])
+            {
+                $c = explode(":", $_COOKIE["product".$product->virtuemart_product_id] );
+                $query='SELECT price FROM #__vmtools_nets_products WHERE id_product = '.$product->virtuemart_product_id." AND id_net = ".$c[1];
+                $db->setQuery($query);
+                $p = $db->loadResult()*$product->quantity;
+                //echo $product->virtuemart_product_id." нет кукис".'<br>';
+            }   
+            else
+            {
+                //echo $product->virtuemart_product_id." есть кукис".'<br>';                
+                $query='SELECT price FROM #__vmtools_nets_products WHERE id_product = '.$product->virtuemart_product_id." ORDER BY price ASC LIMIT 1";
+                $db->setQuery($query);
+                $p = $db->loadResult()*$product->quantity;
+            }
+            $t += $p;
 		}
-		$this->data->billTotal = $currency->priceDisplay( $this->pricesUnformatted['billTotal'] );
+		//$this->data->billTotal = $currency->priceDisplay( $this->pricesUnformatted['billTotal'] );
+        $this->data->billTotal = $t." руб";
 		$this->data->dataValidated = $this->_dataValidated ;
 		return $this->data ;
 	}

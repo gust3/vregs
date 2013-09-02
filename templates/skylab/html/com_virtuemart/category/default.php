@@ -218,11 +218,11 @@ $verticalseparator = " vertical-separator";
 $db = JFactory::getDBO();
 $sr = explode(',', $_COOKIE['vm_sravnenie_value']);
 foreach ( $this->products as $product ) {
-
-	$query = 'SELECT sa.adress FROM #__vmtools_nets_products AS np, #__vmtools_shops_adresses AS sa WHERE sa.id_net = np.id_net AND sa.id_region = '.$_COOKIE['region'].' AND np.id_product ='.$product->virtuemart_product_id;
-	$db->setQuery($query);
-	$adresses = $db->loadObjectList();	
-	if (count($adresses) == 0) continue;
+	
+    $query = 'SELECT region FROM #__vmtools_regions_products WHERE product_id = '.$product->virtuemart_product_id." AND region = ".$_COOKIE['region'];
+    $db->setQuery($query);
+	$rez = $db->loadResult();	
+	if (!$rez) continue;
 	
 	echo '<input type="hidden" name="special_product_id" value="'.$product->virtuemart_product_id.'" disabled="disabled" />';
 
